@@ -3,22 +3,22 @@ export default function NoteForm() {
     <>
       <form>
         <div className="flex w-full gap-3">
-          <div className="flex flex-col gap-3 grow">
-            <label htmlFor="title">Title</label>
+          <label htmlFor="title" className="flex flex-col gap-3 grow">
+            Title
             <input
               type="text"
-              className="border-2 border-slate-500 rounded-md px-2 py-1"
+              className="border-2 border-slate-400 rounded-md px-2 py-1"
               id="title"
             />
-          </div>
-          <div className="flex flex-col gap-3 grow">
-            <label htmlFor="tags">Tags</label>
+          </label>
+          <label htmlFor="tags" className="flex flex-col gap-3 grow">
+            Tags
             <input
               type="text"
-              className="border-2 border-slate-500 rounded-md px-2 py-1"
+              className="border-2 border-slate-400 rounded-md px-2 py-1"
               id="tags"
             />
-          </div>
+          </label>
         </div>
       </form>
     </>
