@@ -1,17 +1,24 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import CreatableSelect from "react-select/creatable";
 
-export default function NoteForm() {
+export default function NoteForm({ onSubmit }) {
   const titleRef = useRef(null);
   const markdownRef = useRef(null);
+  const [selectedTags, setSelectedTags] = useState([]);
 
-  function submitForm(e) {
+  function handleSubmit(e) {
     e.preventDefault();
+
+    onSubmit({
+      title: titleRef.current.value,
+      markdown: markdownRef.current.value,
+      tags: [],
+    });
   }
 
   return (
-    <form onSubmit={submitForm}>
+    <form onSubmit={handleSubmit}>
       <div className="flex w-full gap-3">
         <label htmlFor="title" className="flex flex-col gap-3 grow">
           Title
@@ -25,7 +32,19 @@ export default function NoteForm() {
         </label>
         <label htmlFor="tags" className="flex flex-col gap-3 grow">
           Tags
-          <CreatableSelect isMulti required />
+          <CreatableSelect
+            isMulti
+            value={selectedTags.map((tag) => {
+              return { label: tag.label, value: tag.id };
+            })}
+            onChange={(tags) => {
+              setSelectedTags(
+                tags.map((tag) => {
+                  return { label: tag.label, value: tag.id };
+                })
+              );
+            }}
+          />
         </label>
       </div>
       <div className="mt-5">

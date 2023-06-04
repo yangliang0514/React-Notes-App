@@ -1,7 +1,11 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 import NewNote from "./NewNote";
+import useLocalStorage from "./useLocalStorage";
 
 export default function App() {
+  const [notes, setNotes] = useLocalStorage("notes", []);
+  const [tags, setTags] = useLocalStorage("tags", []);
+
   return (
     <main className="container m-4">
       <Routes>
