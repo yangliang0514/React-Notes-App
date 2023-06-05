@@ -1,8 +1,9 @@
-import { Routes, Route, Navigate } from "react-router-dom";
-import NewNote from "./NewNote";
-import useLocalStorage from "./useLocalStorage";
 import { useMemo } from "react";
+import { Routes, Route, Navigate } from "react-router-dom";
 import { v4 as uuidV4 } from "uuid";
+import useLocalStorage from "./useLocalStorage";
+import NewNote from "./NewNote";
+import NoteList from "./NoteList";
 
 export default function App() {
   const [notes, setNotes] = useLocalStorage("notes", []);
@@ -35,9 +36,9 @@ export default function App() {
   }
 
   return (
-    <main className="container m-4">
+    <main className="p-4">
       <Routes>
-        <Route path="/" element={<h1>Home</h1>} />
+        <Route path="/" element={<NoteList />} />
         <Route
           path="/new"
           element={
