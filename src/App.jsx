@@ -1,10 +1,19 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 import NewNote from "./NewNote";
 import useLocalStorage from "./useLocalStorage";
+import { useMemo } from "react";
 
 export default function App() {
   const [notes, setNotes] = useLocalStorage("notes", []);
   const [tags, setTags] = useLocalStorage("tags", []);
+  const notesWithTage = useMemo(() => {
+    return notes.map((note) => {
+      return {
+        ...notes,
+        tags: tags.filter((tag) => note.tagIds.include(tag.id)),
+      };
+    });
+  }, [notes, tags]);
 
   return (
     <main className="container m-4">

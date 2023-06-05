@@ -56,7 +56,7 @@ export default function NoteForm({ onSubmit }) {
           name=""
           id="mark-down"
           rows="15"
-          className="border border-slate-300 rounded-md px-1 py-1 w-full"
+          className="border border-slate-300 rounded-md px-2 py-1 w-full"
           required
         ></textarea>
       </div>
