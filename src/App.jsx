@@ -38,7 +38,7 @@ export default function App() {
   return (
     <main className="p-4">
       <Routes>
-        <Route path="/" element={<NoteList />} />
+        <Route path="/" element={<NoteList availableTags={tags} />} />
         <Route
           path="/new"
           element={

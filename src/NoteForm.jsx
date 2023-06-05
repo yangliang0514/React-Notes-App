@@ -29,7 +29,7 @@ export default function NoteForm({ onSubmit, onAddTag, availableTags }) {
           <input
             ref={titleRef}
             type="text"
-            className="border border-slate-300 rounded-md px-2 py-1"
+            className="border border-slate-300 rounded-md px-2 py-1 h-10"
             id="title"
             required
           />
