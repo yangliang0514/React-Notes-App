@@ -1,11 +1,13 @@
 import { useRef, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import CreatableSelect from "react-select/creatable";
+import { v4 as uuidV4 } from "uuid";
 
-export default function NoteForm({ onSubmit }) {
+export default function NoteForm({ onSubmit, onAddTag, availableTags }) {
   const titleRef = useRef(null);
   const markdownRef = useRef(null);
   const [selectedTags, setSelectedTags] = useState([]);
+  const navigate = useNavigate();
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -13,8 +15,10 @@ export default function NoteForm({ onSubmit }) {
     onSubmit({
       title: titleRef.current.value,
       markdown: markdownRef.current.value,
-      tags: [],
+      tags: selectedTags,
     });
+
+    navigate("..");
   }
 
   return (
@@ -37,12 +41,20 @@ export default function NoteForm({ onSubmit }) {
             value={selectedTags.map((tag) => {
               return { label: tag.label, value: tag.id };
             })}
+            options={availableTags.map((tag) => {
+              return { label: tag.label, value: tag.id };
+            })}
             onChange={(tags) => {
               setSelectedTags(
                 tags.map((tag) => {
                   return { label: tag.label, value: tag.id };
                 })
               );
+            }}
+            onCreateOption={(label) => {
+              const newTag = { id: uuidV4(), label };
+              onAddTag(newTag);
+              setSelectedTags((prev) => [...prev, newTag]);
             }}
           />
         </label>
