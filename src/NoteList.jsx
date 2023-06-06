@@ -72,11 +72,15 @@ export default function NoteList({ availableTags, notes }) {
           </label>
         </div>
       </form>
-      <div className="grid grid-col-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+      <div className="grid grid-col-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
         {filteredNotes.map((note) => (
           <NoteCard id={note.id} title={note.title} tags={note.tags} />
         ))}
       </div>
     </>
   );
+}
+
+function NoteCard({ id, title, tasg }) {
+  return "";
 }

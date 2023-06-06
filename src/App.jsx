@@ -12,7 +12,7 @@ export default function App() {
     return notes.map((note) => {
       return {
         ...notes,
-        tags: tags.filter((tag) => note.tagIds.include(tag.id)),
+        tags: tags.filter((tag) => note.tagIds.includes(tag.id)),
       };
     });
   }, [notes, tags]);
@@ -40,7 +40,7 @@ export default function App() {
       <Routes>
         <Route
           path="/"
-          element={<NoteList availableTags={tags} notes={notes} />}
+          element={<NoteList availableTags={tags} notes={notesWithTage} />}
         />
         <Route
           path="/new"
