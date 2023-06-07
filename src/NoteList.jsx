@@ -82,5 +82,11 @@ export default function NoteList({ availableTags, notes }) {
 }
 
 function NoteCard({ id, title, tasg }) {
-  return "";
+  return (
+    <Link>
+      <div>
+        <h2>{title}</h2>
+      </div>
+    </Link>
+  );
 }
