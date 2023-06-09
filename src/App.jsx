@@ -8,7 +8,7 @@ import NoteList from "./NoteList";
 export default function App() {
   const [notes, setNotes] = useLocalStorage("notes", []);
   const [tags, setTags] = useLocalStorage("tags", []);
-  const notesWithTage = useMemo(() => {
+  const notesWithTags = useMemo(() => {
     return notes.map((note) => {
       return {
         ...notes,
@@ -40,7 +40,7 @@ export default function App() {
       <Routes>
         <Route
           path="/"
-          element={<NoteList availableTags={tags} notes={notesWithTage} />}
+          element={<NoteList availableTags={tags} notes={notesWithTags} />}
         />
         <Route
           path="/new"

@@ -72,7 +72,7 @@ export default function NoteList({ availableTags, notes }) {
           </label>
         </div>
       </form>
-      <div className="grid grid-col-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+      <div className="grid grid-col-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 mt-5">
         {filteredNotes.map((note) => (
           <NoteCard id={note.id} title={note.title} tags={note.tags} />
         ))}
@@ -81,11 +81,21 @@ export default function NoteList({ availableTags, notes }) {
   );
 }
 
-function NoteCard({ id, title, tasg }) {
+function NoteCard({ id, title, tags }) {
   return (
-    <Link>
-      <div>
-        <h2>{title}</h2>
+    <Link to={`/${id}`}>
+      <div className="w-full border border-gray-400 rounded-md p-5">
+        <span className="text-center block mb-5">{title}</span>
+        <div className="flex justify-center flex-wrap gap-1">
+          {tags.length > 0 &&
+            tags.map((tag) => {
+              return (
+                <span className="inline-block text-white text-sm py-1 px-2 rounded-md bg-blue-400">
+                  test tag
+                </span>
+              );
+            })}
+        </div>
       </div>
     </Link>
   );
