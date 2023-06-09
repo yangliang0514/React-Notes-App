@@ -8,14 +8,17 @@ import NoteList from "./NoteList";
 export default function App() {
   const [notes, setNotes] = useLocalStorage("notes", []);
   const [tags, setTags] = useLocalStorage("tags", []);
+
   const notesWithTags = useMemo(() => {
     return notes.map((note) => {
       return {
-        ...notes,
+        ...note,
         tags: tags.filter((tag) => note.tagIds.includes(tag.id)),
       };
     });
   }, [notes, tags]);
+
+  console.log(notesWithTags);
 
   function onCreateNote(noteData) {
     setNotes((prev) => {
