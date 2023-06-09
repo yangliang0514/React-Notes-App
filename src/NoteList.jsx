@@ -28,7 +28,7 @@ export default function NoteList({ availableTags, notes }) {
           <Link to={"/new"}>
             <button
               type="button"
-              className="p-2 bg-blue-500 hover:bg-blue-600 text-white rounded-lg transition-colors border border-blue-400"
+              className="p-2 bg-blue-500 hover:bg-blue-600 text-white rounded-lg transition-colors border border-blue-500"
             >
               Create
             </button>
@@ -93,15 +93,15 @@ export default function NoteList({ availableTags, notes }) {
 function NoteCard({ id, title, tags }) {
   return (
     <Link to={`/${id}`}>
-      <div className="w-full h-full border border-gray-300 rounded-md p-5 transition-all relative hover:-translate-y-1 hover:shadow-lg">
-        <span className="text-center block mb-5">{title}</span>
+      <div className="w-full h-full border border-gray-300 rounded-md p-5 transition-all relative hover:-translate-y-1 hover:shadow-lg flex flex-col gap-5">
+        <span className="text-center block text-2xl">{title}</span>
         <div className="flex justify-center flex-wrap gap-1">
           {tags.length > 0 &&
             tags.map((tag) => {
               return (
                 <span
                   key={tag.id}
-                  className="inline-block text-white text-sm py-1 px-2 rounded-md bg-blue-400"
+                  className="block text-white text-sm py-1 px-2 rounded-md bg-blue-500"
                 >
                   {tag.label}
                 </span>

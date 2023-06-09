@@ -4,6 +4,7 @@ import { v4 as uuidV4 } from "uuid";
 import useLocalStorage from "./useLocalStorage";
 import NewNote from "./NewNote";
 import NoteList from "./NoteList";
+import NoteLayout from "./NoteLayout";
 
 export default function App() {
   const [notes, setNotes] = useLocalStorage("notes", []);
@@ -53,7 +54,7 @@ export default function App() {
             />
           }
         />
-        <Route path="/:id">
+        <Route path="/:id" element={<NoteLayout notes={notesWithTags} />}>
           <Route index element={<h1>Show</h1>} />
           <Route path="edit" element={<h1>edit</h1>} />
         </Route>
