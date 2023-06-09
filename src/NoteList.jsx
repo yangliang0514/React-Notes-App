@@ -1,6 +1,7 @@
 import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import ReactSelect from "react-select/creatable";
+import { v4 as uuidV4 } from "uuid";
 
 export default function NoteList({ availableTags, notes }) {
   const [selectedTags, setSelectedTags] = useState([]);
@@ -42,7 +43,7 @@ export default function NoteList({ availableTags, notes }) {
       </nav>
       <form action="">
         <div className="flex w-full gap-3">
-          <label htmlFor="title" className="flex flex-col gap-3 grow">
+          <label htmlFor="title" className="flex flex-col gap-3 w-1/2">
             Title
             <input
               type="text"
@@ -52,7 +53,7 @@ export default function NoteList({ availableTags, notes }) {
               onChange={(e) => setTitle(e.target.value)}
             />
           </label>
-          <label htmlFor="tags" className="flex flex-col gap-3 grow">
+          <label htmlFor="tags" className="flex flex-col gap-3 w-1/2">
             Tags
             <ReactSelect
               isMulti
@@ -75,7 +76,14 @@ export default function NoteList({ availableTags, notes }) {
       </form>
       <div className="grid grid-col-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 mt-5">
         {filteredNotes.map((note) => {
-          return <NoteCard id={note.id} title={note.title} tags={note.tags} />;
+          return (
+            <NoteCard
+              key={note.id}
+              id={note.id}
+              title={note.title}
+              tags={note.tags}
+            />
+          );
         })}
       </div>
     </>
@@ -85,13 +93,16 @@ export default function NoteList({ availableTags, notes }) {
 function NoteCard({ id, title, tags }) {
   return (
     <Link to={`/${id}`}>
-      <div className="w-full border border-gray-300 rounded-md p-5">
+      <div className="w-full h-full border border-gray-300 rounded-md p-5 transition-all relative hover:-translate-y-1 hover:shadow-lg">
         <span className="text-center block mb-5">{title}</span>
         <div className="flex justify-center flex-wrap gap-1">
           {tags.length > 0 &&
             tags.map((tag) => {
               return (
-                <span className="inline-block text-white text-sm py-1 px-2 rounded-md bg-blue-400">
+                <span
+                  key={tag.id}
+                  className="inline-block text-white text-sm py-1 px-2 rounded-md bg-blue-400"
+                >
                   {tag.label}
                 </span>
               );

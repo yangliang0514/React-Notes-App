@@ -24,7 +24,7 @@ export default function NoteForm({ onSubmit, onAddTag, availableTags }) {
   return (
     <form onSubmit={handleSubmit}>
       <div className="flex w-full gap-3">
-        <label htmlFor="title" className="flex flex-col gap-3 grow">
+        <label htmlFor="title" className="flex flex-col gap-3 w-1/2">
           Title
           <input
             ref={titleRef}
@@ -34,7 +34,7 @@ export default function NoteForm({ onSubmit, onAddTag, availableTags }) {
             required
           />
         </label>
-        <label htmlFor="tags" className="flex flex-col gap-3 grow">
+        <label htmlFor="tags" className="flex flex-col gap-3 w-1/2">
           Tags
           <CreatableSelect
             isMulti

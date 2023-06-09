@@ -18,8 +18,6 @@ export default function App() {
     });
   }, [notes, tags]);
 
-  console.log(notesWithTags);
-
   function onCreateNote(noteData) {
     setNotes((prev) => {
       return [
