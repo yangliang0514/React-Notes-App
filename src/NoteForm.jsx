@@ -24,17 +24,17 @@ export default function NoteForm({ onSubmit, onAddTag, availableTags }) {
   return (
     <form onSubmit={handleSubmit}>
       <div className="flex w-full gap-3">
-        <label htmlFor="title" className="flex flex-col gap-3 w-1/2">
+        <label htmlFor="title" className="flex w-1/2 flex-col gap-3">
           Title
           <input
             ref={titleRef}
             type="text"
-            className="border border-slate-300 rounded-md px-2 py-1 h-10"
+            className="h-10 rounded-md border border-slate-300 px-2 py-1"
             id="title"
             required
           />
         </label>
-        <label htmlFor="tags" className="flex flex-col gap-3 w-1/2">
+        <label htmlFor="tags" className="flex w-1/2 flex-col gap-3">
           Tags
           <CreatableSelect
             isMulti
@@ -68,21 +68,21 @@ export default function NoteForm({ onSubmit, onAddTag, availableTags }) {
           name=""
           id="mark-down"
           rows="15"
-          className="border border-slate-300 rounded-md px-2 py-1 w-full"
+          className="w-full rounded-md border border-slate-300 px-2 py-1"
           required
         ></textarea>
       </div>
-      <div className="flex justify-end gap-2 mt-3">
+      <div className="mt-3 flex justify-end gap-2">
         <button
           type="submit"
-          className="bg-blue-500 text-white px-2 py-1 rounded-md hover:bg-blue-600"
+          className="rounded-md bg-blue-500 px-2 py-1 text-white hover:bg-blue-600"
         >
           Save
         </button>
         <Link to="..">
           <button
             type="button"
-            className="bg-red-500 text-white px-2 py-1 rounded-md hover:bg-red-600"
+            className="rounded-md bg-red-500 px-2 py-1 text-white hover:bg-red-600"
           >
             Cancel
           </button>

@@ -22,20 +22,20 @@ export default function NoteList({ availableTags, notes }) {
 
   return (
     <>
-      <nav className="flex justify-between mb-5 items-center">
+      <nav className="mb-5 flex items-center justify-between">
         <h1>Notes</h1>
-        <div className="flex gap-2 items-center">
+        <div className="flex items-center gap-2">
           <Link to={"/new"}>
             <button
               type="button"
-              className="p-2 bg-blue-500 hover:bg-blue-600 text-white rounded-lg transition-colors border border-blue-500"
+              className="rounded-lg border border-blue-500 bg-blue-500 p-2 text-white transition-colors hover:bg-blue-600"
             >
               Create
             </button>
           </Link>
           <button
             type="button"
-            className="p-2 border border-gray-500 rounded-lg text-gray-500 hover:text-white hover:bg-gray-500 transition-colors"
+            className="rounded-lg border border-gray-500 p-2 text-gray-500 transition-colors hover:bg-gray-500 hover:text-white"
           >
             Edit Tags
           </button>
@@ -43,17 +43,17 @@ export default function NoteList({ availableTags, notes }) {
       </nav>
       <form action="">
         <div className="flex w-full gap-3">
-          <label htmlFor="title" className="flex flex-col gap-3 w-1/2">
+          <label htmlFor="title" className="flex w-1/2 flex-col gap-3">
             Title
             <input
               type="text"
-              className="border border-slate-300 rounded-md px-2 py-1 h-10"
+              className="h-10 rounded-md border border-slate-300 px-2 py-1"
               id="title"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
             />
           </label>
-          <label htmlFor="tags" className="flex flex-col gap-3 w-1/2">
+          <label htmlFor="tags" className="flex w-1/2 flex-col gap-3">
             Tags
             <ReactSelect
               isMulti
@@ -74,7 +74,7 @@ export default function NoteList({ availableTags, notes }) {
           </label>
         </div>
       </form>
-      <div className="grid grid-col-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 mt-5">
+      <div className="grid-col-1 mt-5 grid gap-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         {filteredNotes.map((note) => {
           return (
             <NoteCard
@@ -93,15 +93,15 @@ export default function NoteList({ availableTags, notes }) {
 function NoteCard({ id, title, tags }) {
   return (
     <Link to={`/${id}`}>
-      <div className="w-full h-full border border-gray-300 rounded-md p-5 transition-all relative hover:-translate-y-1 hover:shadow-lg flex flex-col gap-5">
-        <span className="text-center block text-2xl">{title}</span>
-        <div className="flex justify-center flex-wrap gap-1">
+      <div className="relative flex h-full w-full flex-col gap-5 rounded-md border border-gray-300 p-5 transition-all hover:-translate-y-1 hover:shadow-lg">
+        <span className="block text-center text-2xl">{title}</span>
+        <div className="flex flex-wrap justify-center gap-1">
           {tags.length > 0 &&
             tags.map((tag) => {
               return (
                 <span
                   key={tag.id}
-                  className="block text-white text-sm py-1 px-2 rounded-md bg-blue-500"
+                  className="block rounded-md bg-blue-500 px-2 py-1 text-sm text-white"
                 >
                   {tag.label}
                 </span>
