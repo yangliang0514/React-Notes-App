@@ -5,6 +5,7 @@ import useLocalStorage from "./useLocalStorage";
 import NewNote from "./NewNote";
 import NoteList from "./NoteList";
 import { NoteLayout, useNote } from "./NoteLayout";
+import { Note } from "./Note";
 
 export default function App() {
   const [notes, setNotes] = useLocalStorage("notes", []);
@@ -55,7 +56,7 @@ export default function App() {
           }
         />
         <Route path="/:id" element={<NoteLayout notes={notesWithTags} />}>
-          <Route index element={<h1>Show</h1>} />
+          <Route index element={<Note />} />
           <Route path="edit" element={<h1>edit</h1>} />
         </Route>
         <Route path="*" element={<Navigate to="/" />} />

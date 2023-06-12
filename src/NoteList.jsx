@@ -1,7 +1,6 @@
 import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import ReactSelect from "react-select/creatable";
-import { v4 as uuidV4 } from "uuid";
 
 export default function NoteList({ availableTags, notes }) {
   const [selectedTags, setSelectedTags] = useState([]);
