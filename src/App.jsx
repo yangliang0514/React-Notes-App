@@ -4,7 +4,7 @@ import { v4 as uuidV4 } from "uuid";
 import useLocalStorage from "./useLocalStorage";
 import NewNote from "./NewNote";
 import NoteList from "./NoteList";
-import NoteLayout from "./NoteLayout";
+import { NoteLayout, useNote } from "./NoteLayout";
 
 export default function App() {
   const [notes, setNotes] = useLocalStorage("notes", []);
