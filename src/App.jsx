@@ -50,6 +50,12 @@ export default function App() {
     });
   }
 
+  function onDeleteNote(id) {
+    setNotes((prev) => {
+      return prev.filter((note) => note.id !== id);
+    });
+  }
+
   function addTag(tag) {
     setTags((prev) => [...prev, tag]);
   }
@@ -72,7 +78,7 @@ export default function App() {
           }
         />
         <Route path="/:id" element={<NoteLayout notes={notesWithTags} />}>
-          <Route index element={<Note />} />
+          <Route index element={<Note onDelete={onDeleteNote} />} />
           <Route
             path="edit"
             element={
