@@ -1,12 +1,13 @@
 import { Link } from "react-router-dom";
 import { useNote } from "./NoteLayout";
+import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 
 export function Note() {
   const note = useNote();
 
   return (
     <>
-      <nav className="flex items-center justify-between">
+      <nav className="mb-5 flex items-center justify-between">
         <div className="flex flex-col items-start gap-2">
           <h1>{note.title}</h1>
           <div className="flex flex-wrap justify-center gap-1">
@@ -48,6 +49,7 @@ export function Note() {
           </Link>
         </div>
       </nav>
+      <ReactMarkdown>{note.markdown}</ReactMarkdown>
     </>
   );
 }

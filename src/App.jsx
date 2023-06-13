@@ -6,6 +6,7 @@ import NewNote from "./NewNote";
 import NoteList from "./NoteList";
 import { NoteLayout, useNote } from "./NoteLayout";
 import { Note } from "./Note";
+import EditNote from "./EditNote";
 
 export default function App() {
   const [notes, setNotes] = useLocalStorage("notes", []);
@@ -34,6 +35,21 @@ export default function App() {
     });
   }
 
+  function onUpdateNote(id, { tags, ...data }) {
+    setNotes((prev) => {
+      return prev.map((note) => {
+        if (note.id === id)
+          return {
+            ...note,
+            ...data,
+            tagIds: tags.map((tag) => tag.id),
+          };
+
+        return note;
+      });
+    });
+  }
+
   function addTag(tag) {
     setTags((prev) => [...prev, tag]);
   }
@@ -57,7 +73,16 @@ export default function App() {
         />
         <Route path="/:id" element={<NoteLayout notes={notesWithTags} />}>
           <Route index element={<Note />} />
-          <Route path="edit" element={<h1>edit</h1>} />
+          <Route
+            path="edit"
+            element={
+              <EditNote
+                onSubmit={onUpdateNote}
+                onAddTag={addTag}
+                availableTags={tags}
+              />
+            }
+          />
         </Route>
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
