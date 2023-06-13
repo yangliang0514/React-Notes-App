@@ -3,10 +3,17 @@ import { Link, useNavigate } from "react-router-dom";
 import CreatableSelect from "react-select/creatable";
 import { v4 as uuidV4 } from "uuid";
 
-export default function NoteForm({ onSubmit, onAddTag, availableTags }) {
+export default function NoteForm({
+  onSubmit,
+  onAddTag,
+  availableTags,
+  title = "",
+  markdown = "",
+  tags = [],
+}) {
   const titleRef = useRef(null);
   const markdownRef = useRef(null);
-  const [selectedTags, setSelectedTags] = useState([]);
+  const [selectedTags, setSelectedTags] = useState(tags);
   const navigate = useNavigate();
 
   function handleSubmit(e) {
@@ -32,6 +39,7 @@ export default function NoteForm({ onSubmit, onAddTag, availableTags }) {
             className="h-10 rounded-md border border-slate-300 px-2 py-1"
             id="title"
             required
+            defaultValue={title}
           />
         </label>
         <label htmlFor="tags" className="flex w-1/2 flex-col gap-3">
@@ -70,6 +78,7 @@ export default function NoteForm({ onSubmit, onAddTag, availableTags }) {
           rows="15"
           className="w-full rounded-md border border-slate-300 px-2 py-1"
           required
+          defaultValue={markdown}
         ></textarea>
       </div>
       <div className="mt-3 flex justify-end gap-2">
