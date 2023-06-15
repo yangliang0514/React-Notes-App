@@ -115,28 +115,27 @@ function NoteCard({ id, title, tags }) {
 
 function EditTagsModal() {
   return (
-    <div class="fixed left-0 top-0 hidden h-full w-full items-center justify-center bg-black bg-opacity-50 py-10">
-      <div class="max-h-full w-full max-w-xl overflow-y-auto bg-white sm:rounded-2xl">
-        <div class="w-full">
-          <div class="m-8 mx-auto my-20 max-w-[400px]">
-            <div class="mb-8">
-              <h1 class="mb-4 text-3xl font-extrabold">
-                Turn on notifications
-              </h1>
-              <p class="text-gray-600">
-                Get the most out of Twitter by staying up to date with what's
-                happening.
-              </p>
-            </div>
-            <div class="space-y-4">
-              <button class="w-full rounded-full bg-black p-3 font-semibold text-white">
-                Allow notifications
-              </button>
-              <button class="w-full rounded-full border bg-white p-3 font-semibold">
-                Skip for now
-              </button>
-            </div>
-          </div>
+    <div class="fixed left-0 top-0 flex h-full w-full items-center justify-center bg-black bg-opacity-50 py-10">
+      <div className="relative -top-28 h-[360px] w-[480px] rounded-md bg-white">
+        <div className="flex justify-between p-10">
+          <h2 className="text-3xl">Edit Tags</h2>
+          <button className="rounded-lg bg-slate-200 p-2 hover:bg-slate-300">
+            <svg
+              class="h-6 w-6"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              aria-hidden="true"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M6 18L18 6M6 6l12 12"
+              />
+            </svg>
+          </button>
         </div>
       </div>
     </div>
