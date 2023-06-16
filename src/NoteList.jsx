@@ -5,6 +5,7 @@ import ReactSelect from "react-select/creatable";
 export default function NoteList({ availableTags, notes }) {
   const [selectedTags, setSelectedTags] = useState([]);
   const [title, setTitle] = useState("");
+  const [modalOpen, setModalOpen] = useState(false);
 
   const filteredNotes = useMemo(() => {
     return notes.filter((note) => {
@@ -35,6 +36,7 @@ export default function NoteList({ availableTags, notes }) {
           <button
             type="button"
             className="rounded-lg border border-gray-500 p-2 text-gray-500 transition-colors hover:bg-gray-500 hover:text-white"
+            onClick={() => setModalOpen(true)}
           >
             Edit Tags
           </button>
@@ -85,7 +87,11 @@ export default function NoteList({ availableTags, notes }) {
           );
         })}
       </div>
-      <EditTagsModal availableTags={availableTags} />
+      <EditTagsModal
+        availableTags={availableTags}
+        show={modalOpen}
+        handleClose={() => setModalOpen(false)}
+      />
     </>
   );
 }
@@ -113,13 +119,24 @@ function NoteCard({ id, title, tags }) {
   );
 }
 
-function EditTagsModal({ availableTags }) {
+function EditTagsModal({ availableTags, show, handleClose }) {
   return (
-    <div className="fixed left-0 top-0 flex h-full w-full items-center justify-center bg-black bg-opacity-50 py-10">
-      <div className=" h-[360px] w-[480px] rounded-md bg-white p-10">
+    <div
+      className={`fixed left-0 top-0 flex h-full w-full items-center justify-center bg-black bg-opacity-50 py-10 ${
+        show ? "" : "hidden"
+      }`}
+      onClick={handleClose}
+    >
+      <div
+        className="relative h-[360px] w-[480px] rounded-md bg-white p-10 transition-all"
+        onClick={(e) => e.stopPropagation()}
+      >
         <div className="mb-8 flex justify-between">
           <h2 className="text-3xl">Edit Tags</h2>
-          <button className="rounded-lg bg-slate-200 p-2 hover:bg-slate-300">
+          <button
+            className="rounded-lg bg-slate-200 p-2 hover:bg-slate-300"
+            onClick={handleClose}
+          >
             <svg
               className="h-6 w-6"
               xmlns="http://www.w3.org/2000/svg"
