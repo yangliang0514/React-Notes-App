@@ -60,12 +60,32 @@ export default function App() {
     setTags((prev) => [...prev, tag]);
   }
 
+  function updateTag(id, label) {
+    setTags((prev) =>
+      prev.map((tag) => {
+        if (tag.id === id) return { ...tag, label };
+        return tag;
+      })
+    );
+  }
+
+  function deleteTag(id) {
+    setTags((prev) => prev.filter((tag) => tag.id !== id));
+  }
+
   return (
     <main className="p-4">
       <Routes>
         <Route
           path="/"
-          element={<NoteList availableTags={tags} notes={notesWithTags} />}
+          element={
+            <NoteList
+              availableTags={tags}
+              notes={notesWithTags}
+              updateTag={updateTag}
+              deleteTag={deleteTag}
+            />
+          }
         />
         <Route
           path="/new"

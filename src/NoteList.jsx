@@ -2,7 +2,12 @@ import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import ReactSelect from "react-select/creatable";
 
-export default function NoteList({ availableTags, notes }) {
+export default function NoteList({
+  availableTags,
+  notes,
+  updateTag,
+  deleteTag,
+}) {
   const [selectedTags, setSelectedTags] = useState([]);
   const [title, setTitle] = useState("");
   const [modalOpen, setModalOpen] = useState(false);
@@ -91,6 +96,8 @@ export default function NoteList({ availableTags, notes }) {
         availableTags={availableTags}
         show={modalOpen}
         handleClose={() => setModalOpen(false)}
+        onUpdate={updateTag}
+        onDelete={deleteTag}
       />
     </>
   );
@@ -119,7 +126,13 @@ function NoteCard({ id, title, tags }) {
   );
 }
 
-function EditTagsModal({ availableTags, show, handleClose }) {
+function EditTagsModal({
+  availableTags,
+  show,
+  handleClose,
+  onUpdate,
+  onDelete,
+}) {
   return (
     <div
       className={`fixed left-0 top-0 flex h-full w-full items-center justify-center bg-black bg-opacity-50 py-10 ${
@@ -161,8 +174,12 @@ function EditTagsModal({ availableTags, show, handleClose }) {
                 type="text"
                 value={tag.label}
                 className="w-full rounded-md border border-slate-300 px-3 py-1"
+                onChange={(e) => onUpdate(tag.id, e.target.value)}
               />
-              <button className="ml-3 rounded-md border border-red-300 p-1 text-red-300">
+              <button
+                onClick={() => onDelete(tag.id)}
+                className="ml-3 rounded-md border border-red-300 p-1 text-red-300"
+              >
                 <svg
                   className="h-6 w-6"
                   xmlns="http://www.w3.org/2000/svg"
