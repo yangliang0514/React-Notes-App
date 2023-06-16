@@ -85,7 +85,7 @@ export default function NoteList({ availableTags, notes }) {
           );
         })}
       </div>
-      <EditTagsModal />
+      <EditTagsModal availableTags={availableTags} />
     </>
   );
 }
@@ -113,15 +113,15 @@ function NoteCard({ id, title, tags }) {
   );
 }
 
-function EditTagsModal() {
+function EditTagsModal({ availableTags }) {
   return (
-    <div class="fixed left-0 top-0 flex h-full w-full items-center justify-center bg-black bg-opacity-50 py-10">
-      <div className="relative -top-28 h-[360px] w-[480px] rounded-md bg-white">
-        <div className="flex justify-between p-10">
+    <div className="fixed left-0 top-0 flex h-full w-full items-center justify-center bg-black bg-opacity-50 py-10">
+      <div className=" h-[360px] w-[480px] rounded-md bg-white p-10">
+        <div className="mb-8 flex justify-between">
           <h2 className="text-3xl">Edit Tags</h2>
           <button className="rounded-lg bg-slate-200 p-2 hover:bg-slate-300">
             <svg
-              class="h-6 w-6"
+              className="h-6 w-6"
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
@@ -129,14 +129,42 @@ function EditTagsModal() {
               aria-hidden="true"
             >
               <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
                 d="M6 18L18 6M6 6l12 12"
               />
             </svg>
           </button>
         </div>
+        <form action="" className="">
+          {availableTags.map((tag) => (
+            <div className="mb-3 flex justify-between gap-3" key={tag.id}>
+              <input
+                type="text"
+                value={tag.label}
+                className="w-full rounded-md border border-slate-300 px-3 py-1"
+              />
+              <button className="ml-3 rounded-md border border-red-300 p-1 text-red-300">
+                <svg
+                  className="h-6 w-6"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  aria-hidden="true"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                </svg>
+              </button>
+            </div>
+          ))}
+        </form>
       </div>
     </div>
   );
